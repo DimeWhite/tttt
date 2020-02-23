@@ -17,36 +17,29 @@ public class tttsinglemenu extends JPanel{
     // Кнопки для выбора режима
     public static JButton btnII = new JButton("Играть с ИИ");
     public static JButton btn2player = new JButton("Играть с кем-то");
+
+    public static JButton exitbtn = new JButton("Назад");
     public tttsinglemenu(JFrame frame) {
+        setLayout(new BorderLayout());
+        JPanel cn = new JPanel(new GridLayout(3, 2));
+        cn.add(firsXLabel);
+        cn.add(firsXEntry);
+        cn.add(secondOLabel);
+        cn.add(secondOEntry);
+        cn.add(btn2player);
+        cn.add(btnII);
+        add(cn, BorderLayout.CENTER);
+        add(exitbtn, BorderLayout.SOUTH);
         validate();
-        JPanel panelexit = new JPanel(new BorderLayout());
-        panelexit.add(this, BorderLayout.CENTER);
-        JButton exitbtn = new JButton("Назад");
-        setLayout(new GridLayout(3, 2));
-        panelexit.add(exitbtn, BorderLayout.SOUTH);
-        panelexit.setVisible(true
-        );
-        add(firsXLabel);
-        add(firsXEntry);
-        add(secondOLabel);
-        add(secondOEntry);
-        add(btnII);
-        add(btn2player);
-        add(firsXLabel);
-        add(firsXEntry);
-        add(secondOLabel);
-        add(secondOEntry);
-        add(btnII);
-        add(btn2player);
-        validate();
+        cn.validate();
+        JPanel p = this;
         // методы кнопок
         exitbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                panelexit.setVisible(false);
+                frame.remove(p);
                 try {
-                    frame.add(new startmenu());
+                    frame.add(new startmenu(frame)).validate();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -56,17 +49,9 @@ public class tttsinglemenu extends JPanel{
         btn2player.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setVisible(false);
-                panelexit.setVisible(false);
-                frame.add(new tictactoesinglgame(frame, firsXEntry.getText(), secondOEntry.getText()));
-                validate();
+                frame.remove(p);
+                frame.add(new tictactoesinglgame(frame, firsXEntry.getText(), secondOEntry.getText())).validate();
             }
         });
-
-
-        // плитка
-
-
     }
-
 }

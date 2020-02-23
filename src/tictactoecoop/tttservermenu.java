@@ -35,7 +35,7 @@ public class tttservermenu extends JPanel {
                 setVisible(false);
                 panelexit.setVisible(false);
                 try {
-                    frame.add(new startmenu());
+                    frame.add(new startmenu(frame));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

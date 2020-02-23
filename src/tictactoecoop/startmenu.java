@@ -6,30 +6,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class startmenu extends JFrame {
-    public startmenu() throws Exception {
-        JPanel panel = new JPanel();
-        add(panel);
-        this.setDefaultCloseOperation(1);
+public class startmenu extends JPanel {
+    public startmenu(JFrame frame) throws Exception {
+        frame.validate();
+        validate();
         setSize(500, 500);
-        panel.setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(3, 1));
         setVisible(true);
         JButton singl = new JButton("Одиночная игра");
-        panel.add(singl);
+        add(singl);
         JButton coop = new JButton("Мультиплеер");
-        panel.add(coop);
+        add(coop);
         JButton exits = new JButton("Выход");
-        panel.add(exits);
+        add(exits);
+        tttcoopmenu coopmenu = new tttcoopmenu(frame);
+        tttsinglemenu singlmenu = new tttsinglemenu(frame);
+        frame.validate();
         validate();
-        tttcoopmenu coopmenu = new tttcoopmenu(this);
-        tttsinglemenu singlmenu;
-        singlmenu = new tttsinglemenu(this);
+        JPanel p = this;
         singl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ////////////////////////////////////////////////////dsadas//sd/asd/
-                panel.setVisible(false);
-                add(singlmenu);
+                frame.remove(p);
+                frame.add(singlmenu).validate();
                 validate();
             }
         }
@@ -37,8 +37,8 @@ public class startmenu extends JFrame {
         coop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panel.setVisible(false);
-                add(coopmenu);
+                setVisible(false);
+                frame.add(coopmenu).validate();
             }
         });
         exits.addActionListener(new ActionListener() {
