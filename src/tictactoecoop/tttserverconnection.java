@@ -34,8 +34,7 @@ public class tttserverconnection extends JPanel {
                         DataOutputStream out = new DataOutputStream(accepted.getOutputStream());
                         System.out.println(out);
                         DataInputStream in = new DataInputStream(accepted.getInputStream());
-                        tttserver tserver;
-                        tserver = new tttserver(frame, x, port, in, out);
+                        tttserver tserver = new tttserver(frame, x, port, in, out);
                         frame.add(tserver);
 
                         validate();

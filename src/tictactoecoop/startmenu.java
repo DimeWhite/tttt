@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 public class startmenu extends JPanel {
     public startmenu(JFrame frame) throws Exception {
         frame.validate();
-        validate();
         setSize(500, 500);
         setLayout(new GridLayout(3, 1));
         setVisible(true);
@@ -19,26 +18,20 @@ public class startmenu extends JPanel {
         add(coop);
         JButton exits = new JButton("Выход");
         add(exits);
-        tttcoopmenu coopmenu = new tttcoopmenu(frame);
-        tttsinglemenu singlmenu = new tttsinglemenu(frame);
-        frame.validate();
-        validate();
-        JPanel p = this;
-        singl.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ////////////////////////////////////////////////////dsadas//sd/asd/
-                frame.remove(p);
-                frame.add(singlmenu).validate();
-                validate();
-            }
+        singl.addActionListener(e -> {
+
+            ////////////////////////////////////////////////////
+            frame.remove(this);
+            frame.add(new tttsinglemenu(frame));
         }
         );
-        coop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                frame.add(coopmenu).validate();
+        coop.addActionListener(e -> {
+            try {
+                tttcoopmenu coopmenu = new tttcoopmenu(frame);
+                frame.remove(this);
+                frame.add(coopmenu);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
         exits.addActionListener(new ActionListener() {
@@ -48,6 +41,8 @@ public class startmenu extends JPanel {
                 System.exit(0);
             }
         });
+        frame.setSize(501,500);
+        frame.setSize(500,500);
     }
 
 }

@@ -15,20 +15,29 @@ public class tttcoopmenu extends JPanel {
         add(btn_server);
         JButton btn_client = new JButton("Подключится");
         add(btn_client);
-        tttservermenu servermenu = new tttservermenu(frame);
-        tttclientmenu clientmenu = new tttclientmenu(frame);
         btn_server.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                frame.add(servermenu);
+                tttservermenu servermenu = null;
+                try {
+                    servermenu = new tttservermenu(frame);
+                    /////////
+                    frame.add(servermenu);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         btn_client.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                frame.add(clientmenu);
+                try {
+                    tttclientmenu clientmenu = new tttclientmenu(frame);
+                    setVisible(false);
+                    frame.add(clientmenu);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }

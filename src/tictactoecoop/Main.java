@@ -9,7 +9,8 @@ public class Main{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(500, 500);
-        frame.add(new startmenu(frame)).validate();
+        frame.add(new startmenu(frame));
+        frame.validate();
 
     }
 

@@ -30,28 +30,22 @@ public class tttsinglemenu extends JPanel{
         cn.add(btnII);
         add(cn, BorderLayout.CENTER);
         add(exitbtn, BorderLayout.SOUTH);
-        validate();
-        cn.validate();
-        JPanel p = this;
         // методы кнопок
-        exitbtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(p);
-                try {
-                    frame.add(new startmenu(frame)).validate();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                validate();
+        exitbtn.addActionListener(e -> {
+
+            try {
+                frame.removeAll();
+                frame.add(new startmenu(frame));
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
-        btn2player.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                frame.remove(p);
-                frame.add(new tictactoesinglgame(frame, firsXEntry.getText(), secondOEntry.getText())).validate();
-            }
+        btn2player.addActionListener(actionEvent -> {
+            frame.remove(this);
+            frame.remove(cn);
+            frame.add(new tictactoesinglgame(frame, firsXEntry.getText(), secondOEntry.getText()));
         });
+        frame.setSize(501,500);
+        frame.setSize(500,500);
     }
 }
